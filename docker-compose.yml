@@ -1,0 +1,9 @@
+services:
+  cevherdanismanlik-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cevherdanismanlik-web
+    restart: unless-stopped
+    ports:
+      - "10024:80"
