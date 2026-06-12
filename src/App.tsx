@@ -71,6 +71,7 @@ export default function App() {
   ];
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', service: 'Öğrenci Koçluğu', message: '' });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedService, setSelectedService] = useState<number | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -78,13 +79,37 @@ export default function App() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API Submission
-    setTimeout(() => {
-      setFormSubmitted(true);
-      setFormData({ name: '', phone: '', email: '', service: 'Öğrenci Koçluğu', message: '' });
-    }, 800);
+    setIsSubmitting(true);
+
+    const submissionData = new FormData();
+    submissionData.append("access_key", "d7cd0fee-899e-4a18-9a46-0d8b7b1d3f07");
+    submissionData.append("name", formData.name);
+    submissionData.append("phone", formData.phone);
+    submissionData.append("email", formData.email);
+    submissionData.append("service", formData.service);
+    submissionData.append("message", formData.message);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: submissionData
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setFormSubmitted(true);
+        setFormData({ name: '', phone: '', email: '', service: 'Öğrenci Koçluğu', message: '' });
+      } else {
+        alert("Form gönderilirken bir hata oluştu: " + (data.message || "Lütfen tekrar deneyin."));
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("Bağlantı hatası: Lütfen internet bağlantınızı kontrol edip tekrar deneyin.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const services = [
@@ -692,10 +717,23 @@ export default function App() {
 
                   <button
                     type="submit"
-                    className="w-full bg-brand-navy hover:bg-brand-blue text-white font-bold py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:scale-101"
+                    disabled={isSubmitting}
+                    className={`w-full bg-brand-navy hover:bg-brand-blue text-white font-bold py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:scale-101 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                   >
-                    <Calendar className="w-5 h-5 text-brand-gold" />
-                    Talep Formunu Gönder
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Gönderiliyor...
+                      </>
+                    ) : (
+                      <>
+                        <Calendar className="w-5 h-5 text-brand-gold" />
+                        Talep Formunu Gönder
+                      </>
+                    )}
                   </button>
                 </form>
               )}
