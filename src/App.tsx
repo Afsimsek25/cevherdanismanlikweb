@@ -4,9 +4,7 @@ import {
   BookOpen,
   Award,
   Calendar,
-  Phone,
   Mail,
-  MapPin,
   Clock,
   ChevronRight,
   Menu,
@@ -91,25 +89,25 @@ export default function App() {
 
   const services = [
     {
-      icon: <GraduationCap className="w-8 h-8 text-brand-gold" />,
+      icon: <GraduationCap className="w-12 h-12 text-brand-gold" />,
       title: "Öğrenci Koçluğu",
       shortDesc: "Öğrencinin kendi potansiyelini keşfetmesini sağlayarak başarı hedeflerine rehberlik ediyoruz.",
       details: "Birebir koçluk seansları ile öğrencinin öğrenme stillerini belirliyor, zaman yönetimi becerilerini geliştiriyor, akademik ve sosyal hedeflerine ulaşmasında yol arkadaşlığı yapıyoruz. Sadece ders başarısı değil, aynı zamanda motivasyon ve özgüven artışını hedefliyoruz."
     },
     {
-      icon: <Target className="w-8 h-8 text-brand-gold" />,
+      icon: <Target className="w-12 h-12 text-brand-gold" />,
       title: "LGS & YKS Sınav Hazırlığı",
       shortDesc: "Sınav maratonunda planlı çalışma, stratejik test çözümü ve sınav kaygısı yönetimi desteği.",
       details: "LGS ve YKS gibi kritik sınavlarda öğrencilerin haftalık ders takip programlarını hazırlıyoruz. Konu eksiklerinin tespiti, deneme analizleri, doğru kaynak seçimi ve sınav stratejileri ile hazırlık sürecini stressiz ve verimli bir hale getiriyoruz."
     },
     {
-      icon: <TrendingUp className="w-8 h-8 text-brand-gold" />,
+      icon: <TrendingUp className="w-12 h-12 text-brand-gold" />,
       title: "Bireysel Takip & Planlama",
       shortDesc: "Her öğrenciye özel haftalık çalışma planları ve düzenli veli bilgilendirme sistemi.",
       details: "Standart programlar yerine tamamen öğrencinin seviyesine, okul saatlerine ve eksiklerine göre kişiselleştirilmiş programlar hazırlıyoruz. Günlük soru hedefleri ve ders çalışma süreleri takip edilerek, öğrencinin disiplin kazanması sağlanır."
     },
     {
-      icon: <Users className="w-8 h-8 text-brand-gold" />,
+      icon: <Users className="w-12 h-12 text-brand-gold" />,
       title: "Veli Rehberliği & Danışmanlık",
       shortDesc: "Sınav sürecinde aile içi iletişimi güçlendirici ve destekleyici veli bilgilendirmeleri.",
       details: "Eğitim sürecinde ailenin rolü çok büyüktür. Velilerimizle düzenli görüşmeler yaparak öğrencinin gelişimini paylaşıyor, sınav sürecinde kaygı yönetimi ve öğrenciye yaklaşım konusunda ailelere destek veriyoruz."
@@ -164,10 +162,10 @@ export default function App() {
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl">
         <div className="bg-white/80 border border-brand-sand/65 backdrop-blur-md shadow-xl rounded-full px-6 py-3 flex items-center justify-between transition-all duration-300">
           <a href="#hero" className="flex items-center gap-3 group">
-            <img src="/logo.png" alt="Cevher Danışmanlık Logo" className="h-9 w-auto rounded object-contain transition-transform duration-300 group-hover:scale-105" />
+            <img src="/logo.png" alt="Cevher Danışmanlık Logo" className="h-12 w-auto rounded object-contain transition-transform duration-300 group-hover:scale-105" />
             <div className="flex flex-col">
-              <span className="font-serif font-bold text-base leading-none text-brand-navy tracking-tight group-hover:text-brand-gold transition-colors">CEVHER</span>
-              <span className="text-[9px] font-semibold text-brand-indigo tracking-[0.15em] leading-none uppercase mt-0.5">Danışmanlık</span>
+              <span className="font-serif font-bold text-xl leading-none text-brand-navy tracking-tight group-hover:text-brand-gold transition-colors">CEVHER</span>
+              <span className="text-[10px] font-semibold text-brand-indigo tracking-[0.18em] leading-none uppercase mt-1">Danışmanlık</span>
             </div>
           </a>
 
@@ -189,17 +187,10 @@ export default function App() {
 
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="tel:+905555555555"
-              className="flex items-center gap-2 text-brand-navy hover:text-brand-gold transition-colors"
-            >
-              <Phone className="w-4 h-4 text-brand-gold" />
-              <span className="text-xs font-bold">+90 555 555 5555</span>
-            </a>
-            <a
               href="#iletisim"
-              className="bg-brand-navy hover:bg-brand-blue text-white font-semibold py-2 px-5 rounded-full transition-all hover:shadow-md hover:scale-105 duration-300 text-xs flex items-center gap-1.5"
+              className="bg-brand-navy hover:bg-brand-blue text-white font-semibold py-3 px-6 rounded-full transition-all hover:shadow-md hover:scale-105 duration-300 text-sm flex items-center gap-2"
             >
-              <Calendar className="w-3.5 h-3.5 text-brand-gold" />
+              <Calendar className="w-4 h-4 text-brand-gold" />
               Görüşme Planla
             </a>
           </div>
@@ -243,13 +234,6 @@ export default function App() {
 
                 <div className="flex flex-col items-center gap-4 w-full">
                   <a
-                    href="tel:+905555555555"
-                    className="flex items-center justify-center gap-2 text-brand-navy w-full py-3 rounded-xl hover:bg-brand-navy/5 transition-colors"
-                  >
-                    <Phone className="w-5 h-5 text-brand-gold" />
-                    <span className="font-bold tracking-wide">+90 555 555 5555</span>
-                  </a>
-                  <a
                     href="#iletisim"
                     onClick={() => setMobileMenuOpen(false)}
                     className="bg-brand-gold hover:bg-brand-goldDark text-white text-center font-bold py-3.5 px-6 rounded-full transition-all text-sm flex items-center justify-center gap-2 w-full"
@@ -275,7 +259,7 @@ export default function App() {
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
-            className="md:col-span-7 flex flex-col items-start text-left"
+            className="md:col-span-6 flex flex-col items-start text-left"
           >
             <div className="inline-flex items-center gap-2 bg-white/80 border border-brand-gold/20 py-1.5 px-4 rounded-full text-xs font-bold text-brand-goldDark mb-6 shadow-sm">
               <Sparkles className="w-4 h-4 text-brand-gold animate-spin" style={{ animationDuration: '3s' }} />
@@ -328,9 +312,9 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="md:col-span-5 relative flex justify-center"
+            className="md:col-span-6 relative flex justify-center"
           >
-            <div className="relative w-full max-w-[450px]">
+            <div className="relative w-full max-w-[550px]">
               {/* Outer decorative frame */}
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-gold to-brand-indigo rounded-3xl opacity-20 blur-xl transform translate-x-4 translate-y-4"></div>
 
@@ -370,36 +354,32 @@ export default function App() {
       </section>
 
       {/* STATS STRIP */}
-      <section className="bg-brand-navy text-white py-12 relative overflow-hidden">
+      <section className="bg-brand-navy text-white py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid md:grid-cols-4 gap-8 text-center items-center">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center items-start">
             <div className="flex flex-col items-center">
-              <BookOpen className="w-8 h-8 text-brand-gold mb-3" />
-              <h3 className="text-lg font-bold font-serif mb-1">Kişiye Özel Kaynak</h3>
-              <p className="text-xs text-slate-300 max-w-[200px]">Öğrenci seviyesine en uygun yayınların tespiti</p>
+              <BookOpen className="w-12 h-12 text-brand-gold mb-3" />
+              <p className="text-lg font-semibold text-white max-w-[260px]">Öğrenci seviyesine en uygun yayınların tespiti</p>
             </div>
             <div className="flex flex-col items-center">
-              <Clock className="w-8 h-8 text-brand-gold mb-3" />
-              <h3 className="text-lg font-bold font-serif mb-1">7/24 İletişim & Destek</h3>
-              <p className="text-xs text-slate-300 max-w-[200px]">Öğrenci ve veliyle kesintisiz irtibat</p>
+              <Clock className="w-12 h-12 text-brand-gold mb-3" />
+              <p className="text-lg font-semibold text-white max-w-[260px]">Öğrenci ve veliyle kesintisiz irtibat</p>
             </div>
             <div className="flex flex-col items-center">
-              <CheckCircle2 className="w-8 h-8 text-brand-gold mb-3" />
-              <h3 className="text-lg font-bold font-serif mb-1">Haftalık Takip Raporu</h3>
-              <p className="text-xs text-slate-300 max-w-[200px]">Detaylı performans analizleri</p>
+              <CheckCircle2 className="w-12 h-12 text-brand-gold mb-3" />
+              <p className="text-lg font-semibold text-white max-w-[260px]">Detaylı performans analizleri</p>
             </div>
             <div className="flex flex-col items-center">
-              <ShieldCheck className="w-8 h-8 text-brand-gold mb-3" />
-              <h3 className="text-lg font-bold font-serif mb-1">Profesyonel Kadro</h3>
-              <p className="text-xs text-slate-300 max-w-[200px]">Eğitim alanında tecrübeli uzman koçlar</p>
+              <ShieldCheck className="w-12 h-12 text-brand-gold mb-3" />
+              <p className="text-lg font-semibold text-white max-w-[260px]">Eğitim alanında tecrübeli uzman koçlar</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* HİZMETLERİMİZ */}
-      <section id="hizmetlerimiz" className="py-24 bg-white relative">
+      <section id="hizmetlerimiz" className="py-16 sm:py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-xs font-bold text-brand-gold tracking-[0.2em] uppercase mb-3">Sunduğumuz Hizmetler</h2>
@@ -414,26 +394,26 @@ export default function App() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-10"
           >
             {services.map((service, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="bg-brand-cream/40 border border-brand-sand/40 p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:bg-white flex flex-col justify-between"
+                className="bg-brand-cream/40 border border-brand-sand/40 p-8 sm:p-10 rounded-2xl transition-all duration-300 hover:shadow-xl hover:bg-white flex flex-col justify-between"
               >
                 <div>
                   <div className="bg-white p-4 rounded-xl shadow-sm w-fit mb-6 border border-brand-sand/30">
                     {service.icon}
                   </div>
-                  <h4 className="font-serif text-xl font-bold text-brand-navy mb-4">{service.title}</h4>
-                  <p className="text-text-body text-sm leading-relaxed mb-6">{service.shortDesc}</p>
+                  <h4 className="font-serif text-2xl font-bold text-brand-navy mb-4">{service.title}</h4>
+                  <p className="text-text-body text-base leading-relaxed mb-6">{service.shortDesc}</p>
                 </div>
 
                 <button
                   onClick={() => setSelectedService(selectedService === index ? null : index)}
-                  className="text-brand-gold hover:text-brand-goldDark text-sm font-bold flex items-center gap-1 group/btn mt-auto"
+                  className="text-brand-gold hover:text-brand-goldDark text-base font-bold flex items-center gap-1 group/btn mt-auto"
                 >
                   {selectedService === index ? "Daha Az Gör" : "Detaylı Bilgi"}
                   <ChevronRight className={`w-4 h-4 transform transition-transform duration-300 ${selectedService === index ? 'rotate-90' : 'group-hover/btn:translate-x-1'}`} />
@@ -445,7 +425,7 @@ export default function App() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="mt-4 pt-4 border-t border-brand-sand/40 text-xs text-text-body leading-relaxed"
+                      className="mt-4 pt-4 border-t border-brand-sand/40 text-sm text-text-body leading-relaxed"
                     >
                       {service.details}
                     </motion.div>
@@ -458,26 +438,26 @@ export default function App() {
       </section>
 
       {/* HAKKIMIZDA / KURUCU */}
-      <section id="hakkimizda" className="py-24 bg-brand-cream/30 relative">
+      <section id="hakkimizda" className="py-16 sm:py-24 bg-brand-cream/30 relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-12 gap-12 items-center">
 
             {/* Left Column: Visual Grid */}
             <div className="md:col-span-5 grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-4">
-                <div className="bg-brand-navy p-8 rounded-3xl text-white text-center flex flex-col justify-center items-center shadow-lg">
-                  <span className="font-serif font-black text-4xl text-brand-gold mb-1">10+</span>
-                  <span className="text-xs font-semibold text-slate-300">Yıllık Tecrübe</span>
+                <div className="bg-brand-navy p-8 sm:p-10 rounded-3xl text-white text-center flex flex-col justify-center items-center shadow-lg">
+                  <span className="font-serif font-black text-5xl text-brand-gold mb-1.5">10+</span>
+                  <span className="text-sm font-semibold text-slate-300">Yıllık Tecrübe</span>
                 </div>
                 <div className="bg-white rounded-3xl overflow-hidden shadow-md border border-brand-sand/30">
                   <img src="/logo.png" alt="Cevher Danışmanlık" className="w-full h-full object-cover p-6" />
                 </div>
               </div>
               <div className="flex items-center">
-                <div className="bg-gradient-to-b from-brand-gold to-brand-goldDark text-white p-8 rounded-3xl text-center flex flex-col justify-center items-center h-[90%] w-full shadow-lg">
-                  <BookOpen className="w-10 h-10 mb-4 text-brand-navy" />
-                  <span className="font-bold text-lg leading-tight mb-2">Bireysel Yol Haritası</span>
-                  <span className="text-[10px] text-slate-100">Her Öğrenci Bir Cevherdir</span>
+                <div className="bg-gradient-to-b from-brand-gold to-brand-goldDark text-white p-8 sm:p-10 rounded-3xl text-center flex flex-col justify-center items-center h-[95%] w-full shadow-lg">
+                  <BookOpen className="w-14 h-14 mb-4 text-brand-navy" />
+                  <span className="font-bold text-xl leading-tight mb-2">Bireysel Yol Haritası</span>
+                  <span className="text-xs text-slate-100 font-medium">Her Öğrenci Bir Cevherdir</span>
                 </div>
               </div>
             </div>
@@ -523,7 +503,7 @@ export default function App() {
       </section>
 
       {/* METODOLOJİ (NASIL ÇALIŞIYORUZ) */}
-      <section id="metodoloji" className="py-24 bg-white relative">
+      <section id="metodoloji" className="py-16 sm:py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-20">
             <h2 className="text-xs font-bold text-brand-gold tracking-[0.2em] uppercase mb-3">Çalışma Sistemimiz</h2>
@@ -533,17 +513,17 @@ export default function App() {
             <div className="w-16 h-[3px] bg-brand-gold mx-auto mt-6"></div>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8 relative">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 relative">
             {/* Connective Line (Desktop Only) */}
-            <div className="hidden md:block absolute top-[60px] left-[15%] right-[15%] h-[2px] bg-brand-sand/60 z-0"></div>
+            <div className="hidden lg:block absolute top-[72px] left-[15%] right-[15%] h-[2px] bg-brand-sand/60 z-0"></div>
 
             {methodology.map((item, index) => (
               <div key={index} className="flex flex-col items-center text-center relative z-10 group">
-                <div className="w-20 h-20 rounded-2xl bg-brand-cream border-2 border-brand-sand flex items-center justify-center font-serif text-2xl font-black text-brand-gold mb-6 shadow-sm group-hover:bg-brand-navy group-hover:text-brand-gold group-hover:border-brand-navy transition-all duration-500">
+                <div className="w-24 h-24 rounded-2xl bg-brand-cream border-2 border-brand-sand flex items-center justify-center font-serif text-3xl font-black text-brand-gold mb-6 shadow-sm group-hover:bg-brand-navy group-hover:text-brand-gold group-hover:border-brand-navy transition-all duration-500">
                   {item.step}
                 </div>
-                <h4 className="font-serif text-lg font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition-colors">{item.title}</h4>
-                <p className="text-text-body text-xs leading-relaxed max-w-[220px]">{item.desc}</p>
+                <h4 className="font-serif text-xl font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition-colors">{item.title}</h4>
+                <p className="text-text-body text-sm leading-relaxed max-w-[240px]">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -551,7 +531,7 @@ export default function App() {
       </section>
 
       {/* YORUMLAR */}
-      <section id="yorumlar" className="py-24 bg-brand-navy text-white relative overflow-hidden">
+      <section id="yorumlar" className="py-16 sm:py-24 bg-brand-navy text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -567,18 +547,18 @@ export default function App() {
             {testimonials.map((testi, index) => (
               <div
                 key={index}
-                className="glass-dark border border-white/10 p-8 rounded-3xl flex flex-col justify-between"
+                className="bg-white/[0.03] border border-white/10 hover:border-brand-gold/40 p-8 sm:p-10 rounded-3xl flex flex-col justify-between backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(199,151,43,0.12)] hover:bg-white/[0.06] group"
               >
-                <p className="italic text-slate-300 text-sm leading-relaxed mb-8">
+                <p className="italic text-slate-300 text-base leading-relaxed mb-8">
                   "{testi.text}"
                 </p>
                 <div className="flex items-center gap-4 pt-4 border-t border-white/10">
-                  <div className="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center font-bold text-brand-gold text-sm font-serif">
+                  <div className="w-12 h-12 rounded-full bg-brand-gold/20 flex items-center justify-center font-bold text-brand-gold text-base font-serif transition-colors duration-500 group-hover:bg-brand-gold group-hover:text-white">
                     {testi.name[0]}
                   </div>
                   <div>
-                    <h4 className="font-bold text-sm text-white">{testi.name}</h4>
-                    <span className="text-[10px] text-brand-gold font-bold uppercase tracking-wider">{testi.role}</span>
+                    <h4 className="font-bold text-base text-white">{testi.name}</h4>
+                    <span className="text-xs text-brand-gold font-bold uppercase tracking-wider">{testi.role}</span>
                   </div>
                 </div>
               </div>
@@ -588,7 +568,7 @@ export default function App() {
       </section>
 
       {/* İLETİŞİM / RANDEVU */}
-      <section id="iletisim" className="py-24 bg-white relative">
+      <section id="iletisim" className="py-16 sm:py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
 
@@ -605,32 +585,12 @@ export default function App() {
 
               <div className="space-y-6 w-full">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-brand-cream border border-brand-sand flex items-center justify-center text-brand-gold shadow-sm">
-                    <Phone className="w-5 h-5" />
+                  <div className="w-14 h-14 rounded-full bg-brand-cream border border-brand-sand flex items-center justify-center text-brand-gold shadow-sm flex-shrink-0">
+                    <Mail className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-text-muted">Telefon Numarası</h4>
-                    <a href="tel:+905555555555" className="font-serif font-bold text-brand-navy hover:text-brand-gold transition-colors text-base">+90 555 555 5555</a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-brand-cream border border-brand-sand flex items-center justify-center text-brand-gold shadow-sm">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-text-muted">E-Posta Adresi</h4>
-                    <a href="mailto:bilgi@cevherdanismanlik.com" className="font-serif font-bold text-brand-navy hover:text-brand-gold transition-colors text-base">bilgi@cevherdanismanlik.com</a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-brand-cream border border-brand-sand flex items-center justify-center text-brand-gold shadow-sm">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-text-muted">Ofis Adresi</h4>
-                    <span className="font-serif font-bold text-brand-navy text-sm">Kavaklıdere, Atatürk Bulvarı No: 123, Çankaya / Ankara</span>
+                    <h4 className="text-sm font-bold text-text-muted">E-Posta Adresi</h4>
+                    <a href="mailto:info@cevherdanismanlik.com" className="font-serif font-bold text-brand-navy hover:text-brand-gold transition-colors text-lg">info@cevherdanismanlik.com</a>
                   </div>
                 </div>
               </div>
@@ -751,8 +711,7 @@ export default function App() {
 
           {/* Logo and About info */}
           <div className="md:col-span-5 flex flex-col items-start">
-            <div className="flex items-center gap-3 mb-6">
-              <img src="/logo.png" alt="Cevher Danışmanlık" className="h-8 w-auto rounded bg-white p-0.5" />
+            <div className="mb-6">
               <span className="font-serif font-bold text-lg leading-none tracking-tight text-white">CEVHER DANIŞMANLIK</span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm mb-6">

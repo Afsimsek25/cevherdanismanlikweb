@@ -1,0 +1,61 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            mkdir -p /root/cevherdanismanlikweb
+            cd /root/cevherdanismanlikweb
+            if [ ! -d ".git" ]; then
+              git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git .
+            else
+              git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+              git fetch origin main
+              git reset --hard origin/main
+            fi
+            docker-compose down || true
+            docker-compose build --no-cache
+            docker-compose up -d
+            
+            if [ ! -f "/etc/nginx/sites-available/cevherdanismanlik" ] || ! grep -q "ssl_certificate" "/etc/nginx/sites-available/cevherdanismanlik"; then
+              echo 'server {' > /etc/nginx/sites-available/cevherdanismanlik
+              echo '    listen 80;' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '    server_name cevherdanismanlik.com www.cevherdanismanlik.com;' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '    location / {' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '        proxy_pass http://localhost:10024;' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '        proxy_http_version 1.1;' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '        proxy_set_header Upgrade $http_upgrade;' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '        proxy_set_header Connection "upgrade";' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '        proxy_set_header Host $host;' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '        proxy_cache_bypass $http_upgrade;' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '        proxy_set_header X-Real-IP $remote_addr;' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '        proxy_set_header X-Forwarded-Proto $scheme;' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '    }' >> /etc/nginx/sites-available/cevherdanismanlik
+              echo '}' >> /etc/nginx/sites-available/cevherdanismanlik
+              ln -sf /etc/nginx/sites-available/cevherdanismanlik /etc/nginx/sites-enabled/
+              systemctl reload nginx
+            fi
+            
+            # Restore/Install SSL for cevherdanismanlik.com if certificates exist, else generate
+            if [ -d "/etc/letsencrypt/live/cevherdanismanlik.com" ]; then
+              certbot install --nginx --cert-name cevherdanismanlik.com -d cevherdanismanlik.com -d www.cevherdanismanlik.com || echo "Certbot install failed"
+            else
+              certbot --nginx -d cevherdanismanlik.com -d www.cevherdanismanlik.com --non-interactive --agree-tos -m info@cevherdanismanlik.com --redirect || echo "Certbot failed"
+            fi

@@ -26,8 +26,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-        serif: ['"Playfair Display"', 'serif'],
+        sans: ['"Inter"', 'sans-serif'],
+        serif: ['"Outfit"', 'sans-serif'],
       },
       spacing: {
         xs: '8px',
