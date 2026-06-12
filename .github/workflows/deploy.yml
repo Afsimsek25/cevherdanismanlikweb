@@ -33,29 +33,37 @@ jobs:
             docker-compose build --no-cache
             docker-compose up -d
             
-            if [ ! -f "/etc/nginx/sites-available/cevherdanismanlik" ] || ! grep -q "ssl_certificate" "/etc/nginx/sites-available/cevherdanismanlik"; then
-              echo 'server {' > /etc/nginx/sites-available/cevherdanismanlik
-              echo '    listen 80;' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '    server_name cevherdanismanlik.com www.cevherdanismanlik.com;' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '    location / {' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '        proxy_pass http://localhost:10024;' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '        proxy_http_version 1.1;' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '        proxy_set_header Upgrade $http_upgrade;' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '        proxy_set_header Connection "upgrade";' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '        proxy_set_header Host $host;' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '        proxy_cache_bypass $http_upgrade;' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '        proxy_set_header X-Real-IP $remote_addr;' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '        proxy_set_header X-Forwarded-Proto $scheme;' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '    }' >> /etc/nginx/sites-available/cevherdanismanlik
-              echo '}' >> /etc/nginx/sites-available/cevherdanismanlik
-              ln -sf /etc/nginx/sites-available/cevherdanismanlik /etc/nginx/sites-enabled/
-              systemctl reload nginx
-            fi
+            # Clean up potential duplicate config files without .com extension to avoid conflicts
+            rm -f /etc/nginx/sites-available/cevherdanismanlik
+            rm -f /etc/nginx/sites-enabled/cevherdanismanlik
             
-            # Restore/Install SSL for cevherdanismanlik.com if certificates exist, else generate
+            # Setup Nginx with correct .com filename
             if [ -d "/etc/letsencrypt/live/cevherdanismanlik.com" ]; then
-              certbot install --nginx --cert-name cevherdanismanlik.com -d cevherdanismanlik.com -d www.cevherdanismanlik.com || echo "Certbot install failed"
+              # If SSL certificate already exists on the server, copy the pre-configured nginx template
+              cp cevherdanismanlik.com /etc/nginx/sites-available/cevherdanismanlik.com
+              ln -sf /etc/nginx/sites-available/cevherdanismanlik.com /etc/nginx/sites-enabled/
+              systemctl reload nginx || { echo "Nginx reload failed, checking configuration"; nginx -t; }
             else
+              # If SSL certificate does not exist, create a temporary port 80 config first
+              echo 'server {' > /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '    listen 80;' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '    server_name cevherdanismanlik.com www.cevherdanismanlik.com;' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '    location / {' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '        proxy_pass http://localhost:10024;' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '        proxy_http_version 1.1;' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '        proxy_set_header Upgrade $http_upgrade;' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '        proxy_set_header Connection "upgrade";' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '        proxy_set_header Host $host;' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '        proxy_cache_bypass $http_upgrade;' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '        proxy_set_header X-Real-IP $remote_addr;' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '        proxy_set_header X-Forwarded-Proto $scheme;' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '    }' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              echo '}' >> /etc/nginx/sites-available/cevherdanismanlik.com
+              
+              ln -sf /etc/nginx/sites-available/cevherdanismanlik.com /etc/nginx/sites-enabled/
+              systemctl reload nginx
+              
+              # Request new SSL certificate using Certbot
               certbot --nginx -d cevherdanismanlik.com -d www.cevherdanismanlik.com --non-interactive --agree-tos -m info@cevherdanismanlik.com --redirect || echo "Certbot failed"
             fi
