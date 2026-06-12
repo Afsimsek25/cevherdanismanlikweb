@@ -1,5 +1,5 @@
 server {
-    server_name cevherdanismanlik.com www.cevherdanismanlik.com;
+    server_name cevherdanismanlik.com;
 
     location / {
         proxy_pass http://127.0.0.1:10024;
@@ -16,15 +16,11 @@ server {
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 }
 server {
-    if ($host = www.cevherdanismanlik.com) {
-        return 301 https://$host$request_uri;
-    } # managed by Certbot
-
     if ($host = cevherdanismanlik.com) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
     listen 80;
-    server_name cevherdanismanlik.com www.cevherdanismanlik.com;
+    server_name cevherdanismanlik.com;
     return 404; # managed by Certbot
 }
