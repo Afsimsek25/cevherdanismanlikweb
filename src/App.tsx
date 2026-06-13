@@ -388,7 +388,7 @@ export default function App() {
               <div className="relative bg-white p-4 rounded-3xl shadow-2xl border border-brand-sand/50 overflow-hidden group">
                 <img
                   src="/hero.png"
-                  alt="Eğitim Koçluğu Görseli"
+                  alt="Cevher Danışmanlık Bireysel Eğitim Koçluğu ve Sınav Danışmanlığı Hizmeti"
                   className="w-full h-auto rounded-2xl object-cover transform group-hover:scale-102 transition-transform duration-700 animate-float"
                 />
 
