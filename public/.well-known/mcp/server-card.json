@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "serverInfo": {
+    "name": "Cevher Danismanlik",
+    "version": "1.0.0"
+  },
+  "transport": {
+    "type": "sse",
+    "endpoint": "https://cevherdanismanlik.com/mcp/sse"
+  },
+  "capabilities": {
+    "tools": {},
+    "resources": {}
+  }
+}

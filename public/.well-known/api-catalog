@@ -1,0 +1,16 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://cevherdanismanlik.com/api/v1",
+      "service-desc": [
+        {"href": "https://cevherdanismanlik.com/openapi.yaml", "type": "application/openapi+yaml"}
+      ],
+      "service-doc": [
+        {"href": "https://cevherdanismanlik.com/docs/api", "type": "text/html"}
+      ],
+      "status": [
+        {"href": "https://cevherdanismanlik.com/api/health"}
+      ]
+    }
+  ]
+}

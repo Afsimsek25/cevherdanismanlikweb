@@ -1,0 +1,7 @@
+{
+  "resource": "https://cevherdanismanlik.com/api",
+  "authorization_servers": [
+    "https://cevherdanismanlik.com"
+  ],
+  "scopes_supported": ["read", "write"]
+}

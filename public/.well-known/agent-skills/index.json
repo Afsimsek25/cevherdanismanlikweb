@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cloudflare/agent-skills-discovery-rfc/main/schema.json",
+  "skills": [
+    {
+      "name": "Cevher Danismanlik Core",
+      "type": "api",
+      "description": "Core API for Cevher Danismanlik services",
+      "url": "https://cevherdanismanlik.com/.well-known/api-catalog",
+      "digest": "sha256-dummy-hash"
+    }
+  ]
+}

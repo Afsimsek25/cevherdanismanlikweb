@@ -62,6 +62,47 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if ('modelContext' in navigator) {
+      (navigator as any).modelContext?.provideContext({
+        tools: [
+          {
+            name: "get_services",
+            description: "Get list of education consulting services of Cevher Danışmanlık",
+            inputSchema: {
+              type: "object",
+              properties: {}
+            },
+            execute: async () => {
+              return {
+                services: [
+                  "Öğrenci Koçluğu",
+                  "LGS Sınav Hazırlığı",
+                  "YKS Sınav Hazırlığı",
+                  "Veli Rehberliği"
+                ]
+              };
+            }
+          },
+          {
+            name: "get_contact_info",
+            description: "Get contact details for Cevher Danışmanlık",
+            inputSchema: {
+              type: "object",
+              properties: {}
+            },
+            execute: async () => {
+              return {
+                email: "info@cevherdanismanlik.com",
+                phone: "+90 (216) 906 00 16"
+              };
+            }
+          }
+        ]
+      });
+    }
+  }, []);
+
   const navLinks = [
     { href: '#hakkimizda', label: 'Hakkımızda', id: 'hakkimizda' },
     { href: '#hizmetlerimiz', label: 'Hizmetlerimiz', id: 'hizmetlerimiz' },
